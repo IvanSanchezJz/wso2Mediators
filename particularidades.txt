@@ -1,0 +1,2 @@
+- apiWeatherDecide.xml
+	Este recurso utiliza los campos recibidos en la petición para, una vez comprobada la existencia (o no) de un determinado campo (CityName), orquestar la petición contra las mediaciones: CitiesByCountry_json_to_xml.xml (si el campo no existe) o getWeather_json_to_xml.xml (si el campo existe)
