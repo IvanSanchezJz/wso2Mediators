@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="xml_to_json_out_message" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+  <property name="messageType" scope="axis2" type="STRING" value="application/json"/>
+  <log level="full" separator=",">
+    <property expression="$body" name="getResponse"/>
+  </log>
+</sequence>
