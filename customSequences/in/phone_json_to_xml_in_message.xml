@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="phone_json_to_xml_in_message.xml" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+  <payloadFactory media-type="xml">
+    <format>
+      <soap12:Envelope
+        xmlns:soap12="http://www.w3.org/2003/05/soap-envelope"
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <soap12:Body>
+          <CheckPhoneNumber xmlns="http://ws.cdyne.com/PhoneVerify/query">
+            <PhoneNumber>$1</PhoneNumber>
+            <LicenseKey>$2</LicenseKey>
+          </CheckPhoneNumber>
+        </soap12:Body>
+      </soap12:Envelope>
+    </format>
+    <args>
+      <arg evaluator="xml" expression="//request/PhoneNumber"/>
+      <arg evaluator="xml" expression="//request/LicenseKey"/>
+    </args>
+  </payloadFactory>
+  <property name="messageType" scope="axis2" type="STRING" value="application/soap+xml"/>
+</sequence>
