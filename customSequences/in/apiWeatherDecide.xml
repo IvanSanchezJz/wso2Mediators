@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="apiWeatherDecide" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+  <property expression="//request/CityName" name="CityName"
+    scope="default" type="STRING" xmlns:web="http://www.webserviceX.NET"/>
+  <log separator=",">
+    <property expression="get-property(&quot;CityName&quot;)" name="showCity-1"/>
+  </log>
+  <filter regex="true" source="boolean(get-property('CityName'))">
+    <then>
+      <sequence key="gov:apimgt/customsequences/in/getWeather_json_to_xml.xml"/>
+    </then>
+    <else>
+      <sequence key="gov:apimgt/customsequences/in/CitiesByCountry_json_to_xml.xml"/>
+    </else>
+  </filter>
+</sequence>
