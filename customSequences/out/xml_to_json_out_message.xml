@@ -4,4 +4,10 @@
   <log level="full" separator=",">
     <property expression="$body" name="getResponse"/>
   </log>
+  <property
+    expression="$body/web:GetWeatherResponse/web:GetWeatherResult"
+    name="texto" scope="default" type="STRING" xmlns:web="http://www.webserviceX.NET"/>
+  <log separator=",">
+    <property expression="get-property('texto')" name="contenido"/>
+  </log>
 </sequence>
