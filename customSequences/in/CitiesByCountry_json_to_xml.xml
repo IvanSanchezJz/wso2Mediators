@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="CitiesByCountry_json_to_xml.xml" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+  <log level="custom" separator=",">
+    <property name="citiesByCountry" value="Cities"/>
+  </log>
+  <payloadFactory media-type="xml">
+    <format>
+      <soap:Envelope
+        xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:web="http://www.webserviceX.NET">
+        <soap:Header/>
+        <soap:Body>
+          <web:GetCitiesByCountry>
+            <web:CountryName>$1</web:CountryName>
+          </web:GetCitiesByCountry>
+        </soap:Body>
+      </soap:Envelope>
+    </format>
+    <args>
+      <arg evaluator="xml" expression="//request/CountryName"/>
+    </args>
+  </payloadFactory>
+  <property name="messageType" scope="axis2" type="STRING" value="application/soap+xml"/>
+</sequence>
